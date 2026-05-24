@@ -199,6 +199,7 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
+
   console.log(`ScamRadar running on http://localhost:${PORT}`);
 });
