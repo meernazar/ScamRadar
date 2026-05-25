@@ -6,8 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "20mb" }));
-app.use(express.static(path.join(__dirname, "Public")));
-
+app.use(express.static(path.join(__dirname, "public")));
 
 // ---------- Gemini ----------
 async function callGemini(systemPrompt, parts) {
@@ -200,7 +199,10 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
-  console.log(`ScamRadar running on ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`ScamRadar running on port ${PORT}`);
 });
